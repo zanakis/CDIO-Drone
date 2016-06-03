@@ -82,7 +82,7 @@ public class VideoPanel extends JPanel implements ICCPlugin, ImageListener
 
 		// record -----------------------------------------------------------------------
 		
-		recordFormatComboBox = new JComboBox(new String[] {FORMAT_MP4, FORMAT_H264}); // + FORMAT_MP4_USB, 
+		recordFormatComboBox = new JComboBox(new String[] {FORMAT_MP4, FORMAT_H264, FORMAT_MP4_USB}); // + FORMAT_MP4_USB, 
 		recordFormatComboBox.setSelectedItem(props.getVideoFormat());
 		recordFormatComboBox.addActionListener(new ActionListener() {
 			
@@ -109,10 +109,10 @@ public class VideoPanel extends JPanel implements ICCPlugin, ImageListener
 		{
 			drone.getCommandManager().setVideoCodec(VideoCodec.H264_720P);
 		}
-//		else if (props.getVideoFormat().equals(FORMAT_MP4_USB))
-//		{
-//			drone.getCommandManager().setVideoCodec(VideoCodec.MP4_360P_H264_360P);
-//		}
+		else if (props.getVideoFormat().equals(FORMAT_MP4_USB))
+		{
+			drone.getCommandManager().setVideoCodec(VideoCodec.MP4_360P_H264_360P);
+		}
 		
 		// scale -----------------------------------------------------------------------
 		

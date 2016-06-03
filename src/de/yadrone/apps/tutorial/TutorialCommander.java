@@ -22,28 +22,35 @@ public class TutorialCommander
 	public void takeOffAndLand()
 	{
 		drone.getCommandManager().takeOff();
-		drone.getCommandManager().waitFor(5000);
+		drone.getCommandManager().hover().doFor(10000);
+		drone.getCommandManager().up(30).doFor(1000);
+		drone.getCommandManager().forward(30).doFor(1000);
+		drone.getCommandManager().hover().doFor(2000);
+		drone.getCommandManager().spinRight(100).doFor(2000);
 		drone.getCommandManager().landing();
+		
 	}
 	
 //	public void leftRightForwardBackward()
 //	{
 //		final CommandManager cmd = drone.getCommandManager();
-//		final int speed = 30; // percentage of max speed
+//		final int speed = 10; // percentage of max speed
 //			
-//		cmd.takeOff().doFor(5000);
+//		cmd.takeOff();
+//		cmd.up(speed).doFor(1000);
 //		
-//		cmd.goLeft(speed).doFor(1000);
-//		cmd.hover().doFor(2000);
+////		cmd.goLeft(speed).doFor(1000);
+////		cmd.hover().doFor(2000);
+////		
+////		cmd.goRight(speed).doFor(1000);
+////		cmd.hover().doFor(2000);
 //		
-//		cmd.goRight(speed).doFor(1000);
-//		cmd.hover().doFor(2000);
+//		cmd.forward(speed).doFor(1000);
+////		cmd.hover().doFor(1000);
 //		
-//		cmd.forward(speed).doFor(2000);
-//		cmd.hover().doFor(1000);
 //		
-//		cmd.backward(speed).doFor(2000);
-//		cmd.hover().doFor(2000);
+////		cmd.backward(speed).doFor(2000);
+////		cmd.hover().doFor(2000);
 //		
 //		cmd.landing();
 //		

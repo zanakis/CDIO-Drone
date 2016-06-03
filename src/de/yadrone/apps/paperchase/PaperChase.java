@@ -12,7 +12,7 @@ public class PaperChase
 	public final static int IMAGE_WIDTH = 640; // 640 or 1280
 	public final static int IMAGE_HEIGHT = 360; // 360 or 720
 	
-	public final static int TOLERANCE = 40;
+	public final static int TOLERANCE = 80;
 	
 	private IARDrone drone = null;
 	private PaperChaseAbstractController autoController;
@@ -22,7 +22,7 @@ public class PaperChase
 	{
 		drone = new ARDrone();
 		drone.start();
-		drone.getCommandManager().setVideoChannel(VideoChannel.VERT);
+		drone.getCommandManager().setVideoChannel(VideoChannel.HORI);
 		
 		PaperChaseGUI gui = new PaperChaseGUI(drone, this);
 		

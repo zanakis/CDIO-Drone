@@ -37,6 +37,7 @@ public class TutorialMain
 			TutorialCommander commander = new TutorialCommander(drone);
 			commander.animateLEDs();
 			commander.takeOffAndLand();
+//			commander.leftRightForwardBackward();
 		}
 		catch (Exception exc)
 		{

@@ -13,7 +13,7 @@ public class TutorialAttitudeListener
 			
 			public void attitudeUpdated(float pitch, float roll, float yaw)
 			{
-		    	System.out.println("Pitch: " + pitch + " Roll: " + roll + " Yaw: " + yaw);
+		    	System.out.println("Pitch: " + pitch + " Roll: " + roll + " Yaw: " + yaw*0.001);
 			}
 
 			public void attitudeUpdated(float pitch, float roll) { }
