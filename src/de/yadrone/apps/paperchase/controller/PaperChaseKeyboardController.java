@@ -4,6 +4,8 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 
+import com.google.zxing.Result;
+
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardCommandManager;
 import de.yadrone.base.IARDrone;
 
@@ -41,4 +43,10 @@ public class PaperChaseKeyboardController extends PaperChaseAbstractController
             return false;
 		}
 	};
+
+	@Override
+	public void onTags(Result[] result, float orientation) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -6,5 +6,6 @@ public interface TagListener
 {
 
 	public void onTag(Result result, float orientation);
+	public void onTags(Result[] result, float orientation);
 	
 }

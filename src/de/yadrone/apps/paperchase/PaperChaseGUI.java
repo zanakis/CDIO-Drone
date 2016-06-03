@@ -41,10 +41,19 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 	
 	private BufferedImage image = null;
 	private Result result;
+	private Result[] multiResult;
 	private String orientation;
 	
 	private String[] shredsToFind = new String[] {"Shred 1", "Shred 2"};
 	private boolean[] shredsFound = new boolean[] {false, false};
+	
+	//QR CODES TO FIND
+	private String[] circlesToFind = new String[] {"W1.03","", "", ""};//??
+	private boolean[] circlePassed = new boolean[] {false, false};
+	private String[] rightWall = new String[] {"","","",""};
+	
+	
+	//
 	
 	private JPanel videoPanel;
 	
@@ -155,9 +164,10 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 						      		  new int[] {imgCenterY-tolerance, imgCenterY-tolerance, imgCenterY+tolerance, imgCenterY+tolerance}, 4);
     				
     				// draw triangle if tag is visible
-        			if (result != null)
+        			if (multiResult != null)
         			{
-        				ResultPoint[] points = result.getResultPoints();
+        				for(int i = 0; i < multiResult.length; i++){
+        				ResultPoint[] points = multiResult[i].getResultPoints();
         				ResultPoint a = points[1]; // top-left
         				ResultPoint b = points[2]; // top-right
         				ResultPoint c = points[0]; // bottom-left
@@ -170,15 +180,15 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
         				
         				g.setColor(Color.RED);
         				g.setFont(tagFont);
-        				g.drawString(result.getText(), (int)a.getX(), (int)a.getY());
+        				g.drawString(multiResult[i].getText(), (int)a.getX(), (int)a.getY());
         				g.drawString(orientation, (int)a.getX(), (int)a.getY() + 20);
         				
-        				if ((System.currentTimeMillis() - result.getTimestamp()) > 1000)
+        				if ((System.currentTimeMillis() - multiResult[i].getTimestamp()) > 1000)
         				{
-        					result = null;
+        					multiResult = null;
         				}
         			}
-        			
+        			}
         			// draw "Congrats" if all tags have been detected
         			if (gameOver)
         			{
@@ -260,28 +270,29 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 		});
     }
 	
-	public void onTag(Result result, float orientation)
+	public void onTags(Result[] multiResult, float orientation)
 	{
-		if (result != null)
+		if (multiResult != null)
 		{
-			this.result = result;
+			this.multiResult = multiResult;
 			this.orientation = orientation + "°";
 			
 			// check if that's a tag (shred) which has not be seen before and mark it as 'found'
-			for (int i=0; i < shredsToFind.length; i++)
+		for(int i = 0; i < multiResult.length; i++){
+			for (int j=0; j < shredsToFind.length; j++)
 			{
-				if (shredsToFind[i].equals(result.getText()))
+				if (shredsToFind[j].equals(multiResult[i].getText()))
 				{
-					shredsToFind[i] = shredsToFind[i] + " - " + gameTime;
-					shredsFound[i] = true;
+					shredsToFind[j] = shredsToFind[j] + " - " + gameTime;
+					shredsFound[j] = true;
 				}
 			}
 			
 			// now check if all shreds have been found and if so, set the gameOver flag
 			boolean isGameOver = true;
-			for (int i=0; i < shredsFound.length; i++)
+			for (int j=0; j < shredsFound.length; j++)
 			{
-				if (shredsFound[i] == false)
+				if (shredsFound[j] == false)
 					isGameOver = false;
 			}
 			
@@ -292,6 +303,9 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 			}
 		}
 	}
+}
+	
+	
 	
 	private void startGameTimeCounter()
 	{
@@ -315,5 +329,11 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 	private void stopGameTimeCounter()
 	{
 		timer.cancel();
+	}
+
+	@Override
+	public void onTag(Result result, float orientation) {
+		// TODO Auto-generated method stub
+		
 	}
 }
