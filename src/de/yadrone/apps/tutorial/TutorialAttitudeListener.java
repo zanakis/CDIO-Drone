@@ -13,7 +13,7 @@ public class TutorialAttitudeListener
 			
 			public void attitudeUpdated(float pitch, float roll, float yaw)
 			{
-		    	System.out.println("Pitch: " + pitch + " Roll: " + roll + " Yaw: " + yaw*0.001);
+//		    	System.out.println("Pitch: " + pitch + " Roll: " + roll + " Yaw: " + yaw*0.001);
 			}
 
 			public void attitudeUpdated(float pitch, float roll) { }
@@ -24,7 +24,7 @@ public class TutorialAttitudeListener
 			
 			public void batteryLevelChanged(int percentage)
 			{
-				System.out.println("Battery: " + percentage + " %");
+//				System.out.println("Battery: " + percentage + " %");
 			}
 			
 			public void voltageChanged(int vbat_raw) { }

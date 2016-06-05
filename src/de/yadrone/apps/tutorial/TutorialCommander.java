@@ -23,10 +23,10 @@ public class TutorialCommander
 	{
 		drone.getCommandManager().takeOff();
 		drone.getCommandManager().hover().doFor(10000);
-		drone.getCommandManager().up(30).doFor(1000);
-		drone.getCommandManager().forward(30).doFor(1000);
-		drone.getCommandManager().hover().doFor(2000);
-		drone.getCommandManager().spinRight(100).doFor(2000);
+//		drone.getCommandManager().up(30).doFor(1000);
+//		drone.getCommandManager().forward(30).doFor(1000);
+//		drone.getCommandManager().hover().doFor(2000);
+//		drone.getCommandManager().spinRight(100).doFor(2000);
 		drone.getCommandManager().landing();
 		
 	}

@@ -33,6 +33,9 @@ public class TutorialMain
 			// Tutorial Section 3
 			new TutorialVideoListener(drone);
 			
+			TutorialVideoListener video = new TutorialVideoListener(drone);
+			drone.getVideoManager().addImageListener(video.getvideo());
+			
 			//Tutorial Section 4
 			TutorialCommander commander = new TutorialCommander(drone);
 			commander.animateLEDs();

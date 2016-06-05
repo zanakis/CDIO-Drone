@@ -17,6 +17,7 @@ public class PaperChase
 	private IARDrone drone = null;
 	private PaperChaseAbstractController autoController;
 	private QRCodeScanner scanner = null;
+	private ObjectDetection objectdetection = null;
 	
 	public PaperChase()
 	{
@@ -36,6 +37,9 @@ public class PaperChase
 		scanner = new QRCodeScanner();
 		scanner.addListener(gui);
 		
+		objectdetection = new ObjectDetection();
+		drone.getVideoManager().addImageListener(objectdetection);
+		
 		drone.getVideoManager().addImageListener(gui);
 		drone.getVideoManager().addImageListener(scanner);
 	}
@@ -53,6 +57,8 @@ public class PaperChase
 			scanner.removeListener(autoController); // only auto autoController registers as TagListener
 		}
 	}
+	
+	
 	
 	public static void main(String[] args)
 	{
