@@ -182,6 +182,12 @@ public class PaperChaseAutoController extends PaperChaseAbstractController imple
 			tagVisitedList.add(tagText);
 		}
 	}
+
+	@Override
+	public void onTags(Result[] result, float orientation) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
