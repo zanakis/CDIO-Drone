@@ -29,7 +29,8 @@ public class TutorialMain
 			
 			// Tutorial Section 2
 			new TutorialAttitudeListener(drone);
-			
+																									
+
 			// Tutorial Section 3
 			new TutorialVideoListener(drone);
 			
