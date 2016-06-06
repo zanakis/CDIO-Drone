@@ -44,8 +44,9 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 	private Result[] multiResult;
 	private String orientation;
 	
-	private String[] shredsToFind = new String[] {"Shred 1", "Shred 2"};
-	private boolean[] shredsFound = new boolean[] {false, false};
+	
+	private String[] qrToFind = new String[] {"P.00", "P.01"};
+	private boolean[] qrFound = new boolean[] {false, false};
 	
 	//QR CODES TO FIND
 	private String[] circlesToFind = new String[] {"W1.03","", "", ""};//??
@@ -144,13 +145,13 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
     				g.setColor(Color.RED);
     				g.setFont(tagFont);
     				g.drawString("Shreds to find", 10, 20);
-    				for (int i=0; i < shredsToFind.length; i++)
+    				for (int i=0; i < qrToFind.length; i++)
     				{
-    					if (shredsFound[i])
+    					if (qrFound[i])
     						g.setColor(Color.GREEN.darker());
     					else
     						g.setColor(Color.RED);
-    					g.drawString(shredsToFind[i], 30, 40 + (i*20));
+    					g.drawString(qrToFind[i], 30, 40 + (i*20));
     				}
     				
         			// draw tolerance field (rectangle)
@@ -279,20 +280,20 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 			
 			// check if that's a tag (shred) which has not be seen before and mark it as 'found'
 		for(int i = 0; i < multiResult.length; i++){
-			for (int j=0; j < shredsToFind.length; j++)
+			for (int j=0; j < qrToFind.length; j++)
 			{
-				if (shredsToFind[j].equals(multiResult[i].getText()))
+				if (qrToFind[j].equals(multiResult[i].getText()) && !qrFound[i])
 				{
-					shredsToFind[j] = shredsToFind[j] + " - " + gameTime;
-					shredsFound[j] = true;
+					qrToFind[j] = qrToFind[j] + " - " + gameTime;
+					qrFound[j] = true;
 				}
 			}
 			
 			// now check if all shreds have been found and if so, set the gameOver flag
 			boolean isGameOver = true;
-			for (int j=0; j < shredsFound.length; j++)
+			for (int j=0; j < qrFound.length; j++)
 			{
-				if (shredsFound[j] == false)
+				if (qrFound[j] == false)
 					isGameOver = false;
 			}
 			
@@ -306,6 +307,7 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 }
 	
 	
+
 	
 	private void startGameTimeCounter()
 	{
@@ -336,4 +338,5 @@ public class PaperChaseGUI extends JFrame implements ImageListener, TagListener
 		// TODO Auto-generated method stub
 		
 	}
+
 }
